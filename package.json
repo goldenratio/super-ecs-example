@@ -1,0 +1,38 @@
+{
+  "name": "super-ecs-example",
+  "version": "1.0.0",
+  "description": "To run the example,\r `npm run sandbox`",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server  --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goldenratio/super-ecs-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goldenratio/super-ecs-example/issues"
+  },
+  "homepage": "https://github.com/goldenratio/super-ecs-example#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.1.0",
+    "file-loader": "^4.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.1",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@types/pixi.js": "4.8.2",
+    "super-ecs": "^1.2.0",
+    "pixi.js": "4.8.2"
+  }
+}
