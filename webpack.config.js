@@ -40,10 +40,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-      'super-ecs': path.resolve(__dirname, 'src/')
-    }
+    extensions: ['.tsx', '.ts', '.js']
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -51,7 +48,7 @@ module.exports = {
       title: 'super-ecs sandbox'
     }),
     new CopyPlugin([
-      { from: './example/assets', to: './assets' }
+      { from: './src/assets', to: './assets' }
     ])
   ],
   output: {
