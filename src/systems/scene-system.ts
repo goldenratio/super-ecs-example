@@ -12,7 +12,7 @@ export class SceneSystem extends System {
 		this._container = container;
 	}
 
-	removedFromWorld(world: World) {
+	removedFromWorld(world: World): void {
 		super.removedFromWorld(world);
 		if (this._disposeBag) {
 			this._disposeBag.dispose();
