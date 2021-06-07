@@ -1,57 +1,60 @@
-import { System } from "super-ecs";
+import { System } from 'super-ecs';
 
 import { PositionComponent } from '../components/position-component';
 import { COMPONENT_NAMES } from '../components/types';
 import { RandomMovementComponent } from '../components/random-movement-component';
 
 export class RandomMovementSystem extends System {
+	private readonly _stageWidth: number;
+	private readonly _stageHeight: number;
 
-  private readonly _stageWidth: number;
-  private readonly _stageHeight: number;
+	constructor(props = { width: 600, height: 400 }) {
+		super();
+		this._stageWidth = props.width;
+		this._stageHeight = props.height;
+	}
 
-  constructor(props = { width: 600, height: 400 }) {
-    super();
-    this._stageWidth = props.width;
-    this._stageHeight = props.height;
-  }
+	update(delta: number): void {
+		const entities = this.world.getEntities([
+			COMPONENT_NAMES.PositionComponent,
+			COMPONENT_NAMES.RandomMovementComponent,
+		]);
 
-  update(delta: number): void {
-    const entities = this.world.getEntities([
-      COMPONENT_NAMES.PositionComponent,
-      COMPONENT_NAMES.RandomMovementComponent
-    ]);
+		if (entities.length === 0) {
+			return;
+		}
 
-    if (entities.length === 0) {
-      return;
-    }
+		entities.forEach(entity => {
+			const positionComponent = entity.getComponent<PositionComponent>(
+				COMPONENT_NAMES.PositionComponent
+			);
+			const randomMovementComponent =
+				entity.getComponent<RandomMovementComponent>(
+					COMPONENT_NAMES.RandomMovementComponent
+				);
 
-    entities.forEach(entity => {
+			if (positionComponent && randomMovementComponent) {
+				const { speed, direction } = randomMovementComponent;
+				positionComponent.x += speed * direction * delta;
+				positionComponent.y += speed * direction * delta;
 
-      const positionComponent = entity.getComponent<PositionComponent>(COMPONENT_NAMES.PositionComponent);
-      const randomMovementComponent = entity.getComponent<RandomMovementComponent>(COMPONENT_NAMES.RandomMovementComponent);
+				const stageWidth = this._stageWidth;
+				const stageHeight = this._stageHeight;
 
-      if (positionComponent && randomMovementComponent) {
-        const { speed, direction } = randomMovementComponent;
-        positionComponent.x += speed * direction * delta;
-        positionComponent.y += speed * direction * delta;
+				const offset = 92;
 
-        const stageWidth = this._stageWidth;
-        const stageHeight = this._stageHeight;
+				if (positionComponent.x < -offset)
+					positionComponent.x = stageWidth + offset;
 
-        const offset = 92;
+				if (positionComponent.y < -offset)
+					positionComponent.y = stageHeight + offset;
 
-        if(positionComponent.x < -offset)
-          positionComponent.x = stageWidth + offset;
+				if (positionComponent.x > stageWidth + offset)
+					positionComponent.x = -offset;
 
-        if(positionComponent.y < -offset)
-          positionComponent.y = stageHeight + offset;
-
-        if(positionComponent.x > stageWidth + offset)
-          positionComponent.x = -offset;
-
-        if(positionComponent.y > stageHeight + offset)
-          positionComponent.y = -offset;
-      }
-    });
-  }
+				if (positionComponent.y > stageHeight + offset)
+					positionComponent.y = -offset;
+			}
+		});
+	}
 }
