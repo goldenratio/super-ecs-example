@@ -1,12 +1,12 @@
 import 'pixi.js';
 import { World, Entity } from 'super-ecs';
 
-import { PositionSystem } from './systems/position-system';
 import { PositionComponent } from './components/position-component';
 import { SpriteComponent } from './components/sprite-component';
+import { RandomMovementComponent } from './components/random-movement-component';
+import { PositionSystem } from './systems/position-system';
 import { SceneSystem } from './systems/scene-system';
 import { RandomMovementSystem } from './systems/random-movement-system';
-import { RandomMovementComponent } from './components/random-movement-component';
 
 const app = new PIXI.Application({
 	width: 600,

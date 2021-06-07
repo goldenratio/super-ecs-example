@@ -1,4 +1,5 @@
-import { Component, ComponentProps } from '../../../super-ecs/src';
+import { Component, ComponentProps } from 'super-ecs';
+
 import { COMPONENT_NAMES } from './types';
 
 export class SpriteComponent implements Component {
