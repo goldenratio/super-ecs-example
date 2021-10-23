@@ -25,13 +25,10 @@ export class RandomMovementSystem extends System {
 		}
 
 		entities.forEach(entity => {
-			const positionComponent = entity.getComponent<PositionComponent>(
-				COMPONENT_NAMES.PositionComponent
+			const positionComponent = entity.getComponent<PositionComponent>(COMPONENT_NAMES.PositionComponent);
+			const randomMovementComponent = entity.getComponent<RandomMovementComponent>(
+				COMPONENT_NAMES.RandomMovementComponent
 			);
-			const randomMovementComponent =
-				entity.getComponent<RandomMovementComponent>(
-					COMPONENT_NAMES.RandomMovementComponent
-				);
 
 			if (positionComponent && randomMovementComponent) {
 				const { speed, direction } = randomMovementComponent;
@@ -43,17 +40,13 @@ export class RandomMovementSystem extends System {
 
 				const offset = 92;
 
-				if (positionComponent.x < -offset)
-					positionComponent.x = stageWidth + offset;
+				if (positionComponent.x < -offset) positionComponent.x = stageWidth + offset;
 
-				if (positionComponent.y < -offset)
-					positionComponent.y = stageHeight + offset;
+				if (positionComponent.y < -offset) positionComponent.y = stageHeight + offset;
 
-				if (positionComponent.x > stageWidth + offset)
-					positionComponent.x = -offset;
+				if (positionComponent.x > stageWidth + offset) positionComponent.x = -offset;
 
-				if (positionComponent.y > stageHeight + offset)
-					positionComponent.y = -offset;
+				if (positionComponent.y > stageHeight + offset) positionComponent.y = -offset;
 			}
 		});
 	}

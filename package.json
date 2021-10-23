@@ -1,7 +1,7 @@
 {
   "name": "super-ecs-example",
   "version": "1.0.0",
-  "description": "To run the example,\r `npm run sandbox`",
+  "description": "Example game using super-ecs",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",

@@ -29,10 +29,7 @@ function init(): void {
 	const world = new World();
 
 	// systems
-	world
-		.addSystem(new SceneSystem(container))
-		.addSystem(new PositionSystem())
-		.addSystem(new RandomMovementSystem());
+	world.addSystem(new SceneSystem(container)).addSystem(new PositionSystem()).addSystem(new RandomMovementSystem());
 
 	// entities
 	Array.from({ length: 50 }).forEach(() => {

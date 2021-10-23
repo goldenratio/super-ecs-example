@@ -24,36 +24,28 @@ export class SceneSystem extends System {
 
 		this._disposeBag = new DisposeBag();
 
-		this._disposeBag
-			.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent]))
-			.subscribe(entity => {
-				const spriteComponent = entity.getComponent<SpriteComponent>(
-					COMPONENT_NAMES.SpriteComponent
-				);
-				if (!spriteComponent) {
-					return;
-				}
+		this._disposeBag.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent])).subscribe(entity => {
+			const spriteComponent = entity.getComponent<SpriteComponent>(COMPONENT_NAMES.SpriteComponent);
+			if (!spriteComponent) {
+				return;
+			}
 
-				const { sprite } = spriteComponent;
-				if (sprite) {
-					this._container.addChild(sprite);
-				}
-			});
+			const { sprite } = spriteComponent;
+			if (sprite) {
+				this._container.addChild(sprite);
+			}
+		});
 
-		this._disposeBag
-			.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
-			.subscribe(entity => {
-				const spriteComponent = entity.getComponent<SpriteComponent>(
-					COMPONENT_NAMES.SpriteComponent
-				);
-				if (!spriteComponent) {
-					return;
-				}
+		this._disposeBag.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent])).subscribe(entity => {
+			const spriteComponent = entity.getComponent<SpriteComponent>(COMPONENT_NAMES.SpriteComponent);
+			if (!spriteComponent) {
+				return;
+			}
 
-				const { sprite } = spriteComponent;
-				if (sprite) {
-					this._container.removeChild(sprite);
-				}
-			});
+			const { sprite } = spriteComponent;
+			if (sprite) {
+				this._container.removeChild(sprite);
+			}
+		});
 	}
 }
