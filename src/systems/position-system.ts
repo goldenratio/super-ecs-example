@@ -5,7 +5,6 @@ import { PositionComponent } from '../components/position-component';
 import { COMPONENT_NAMES } from '../components/types';
 
 export class PositionSystem extends System {
-
 	update(delta: number): void {
 		const entities = this.world.getEntities([
 			COMPONENT_NAMES.PositionComponent,
