@@ -1,9 +1,8 @@
 import { Component, ComponentProps } from 'super-ecs';
 
-import { COMPONENT_NAMES } from './types';
-
 export class RandomMovementComponent implements Component {
-	public name: symbol = COMPONENT_NAMES.RandomMovementComponent;
+	public static TYPE: symbol = Symbol('RandomMovementComponent');
+	public name: symbol = RandomMovementComponent.TYPE;
 	public speed: number;
 	public direction: number;
 

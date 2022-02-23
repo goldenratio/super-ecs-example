@@ -1,9 +1,8 @@
 import { Component, ComponentProps } from 'super-ecs';
 
-import { COMPONENT_NAMES } from './types';
-
 export class SpriteComponent implements Component {
-	public name: symbol = COMPONENT_NAMES.SpriteComponent;
+	public static TYPE: symbol = Symbol('SpriteComponent');
+	public name: symbol = SpriteComponent.TYPE;
 	public sprite: PIXI.Sprite;
 
 	constructor(props?: ComponentProps<SpriteComponent>) {

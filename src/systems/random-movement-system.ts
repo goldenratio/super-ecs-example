@@ -1,7 +1,6 @@
 import { System, TickerDataLike } from 'super-ecs';
 
 import { PositionComponent } from '../components/position-component';
-import { COMPONENT_NAMES } from '../components/types';
 import { RandomMovementComponent } from '../components/random-movement-component';
 
 export class RandomMovementSystem extends System {
@@ -15,10 +14,7 @@ export class RandomMovementSystem extends System {
 	}
 
 	update(tickerData: TickerDataLike): void {
-		const entities = this.world.getEntities([
-			COMPONENT_NAMES.PositionComponent,
-			COMPONENT_NAMES.RandomMovementComponent,
-		]);
+		const entities = this.world.getEntities([PositionComponent.TYPE, RandomMovementComponent.TYPE]);
 
 		if (entities.length === 0) {
 			return;
@@ -26,10 +22,8 @@ export class RandomMovementSystem extends System {
 
 		const { deltaTime } = tickerData;
 		entities.forEach(entity => {
-			const positionComponent = entity.getComponent<PositionComponent>(COMPONENT_NAMES.PositionComponent);
-			const randomMovementComponent = entity.getComponent<RandomMovementComponent>(
-				COMPONENT_NAMES.RandomMovementComponent
-			);
+			const positionComponent = entity.getComponent<PositionComponent>(PositionComponent.TYPE);
+			const randomMovementComponent = entity.getComponent<RandomMovementComponent>(RandomMovementComponent.TYPE);
 
 			if (positionComponent && randomMovementComponent) {
 				const { speed, direction } = randomMovementComponent;

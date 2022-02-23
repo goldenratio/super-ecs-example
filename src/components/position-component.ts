@@ -1,9 +1,8 @@
 import { Component, ComponentProps } from 'super-ecs';
 
-import { COMPONENT_NAMES } from './types';
-
 export class PositionComponent implements Component {
-	public name: symbol = COMPONENT_NAMES.PositionComponent;
+	public static TYPE: symbol = Symbol('PositionComponent');
+	public name: symbol = PositionComponent.TYPE;
 	public x: number;
 	public y: number;
 

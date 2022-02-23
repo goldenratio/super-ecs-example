@@ -1,7 +1,6 @@
 import { Entity, System, World } from 'super-ecs';
 
 import { SpriteComponent } from '../components/sprite-component';
-import { COMPONENT_NAMES } from '../components/types';
 import { DisposeBag } from '../utils/dispose-bag';
 
 export class SceneSystem extends System {
@@ -22,8 +21,8 @@ export class SceneSystem extends System {
 
 		this._disposeBag = new DisposeBag();
 
-		this._disposeBag.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent])).subscribe((entity: Entity) => {
-			const spriteComponent = entity.getComponent<SpriteComponent>(COMPONENT_NAMES.SpriteComponent);
+		this._disposeBag.completable$(world.entityAdded$([SpriteComponent.TYPE])).subscribe((entity: Entity) => {
+			const spriteComponent = entity.getComponent<SpriteComponent>(SpriteComponent.TYPE);
 			if (!spriteComponent) {
 				return;
 			}
@@ -34,18 +33,16 @@ export class SceneSystem extends System {
 			}
 		});
 
-		this._disposeBag
-			.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
-			.subscribe((entity: Entity) => {
-				const spriteComponent = entity.getComponent<SpriteComponent>(COMPONENT_NAMES.SpriteComponent);
-				if (!spriteComponent) {
-					return;
-				}
+		this._disposeBag.completable$(world.entityRemoved$([SpriteComponent.TYPE])).subscribe((entity: Entity) => {
+			const spriteComponent = entity.getComponent<SpriteComponent>(SpriteComponent.TYPE);
+			if (!spriteComponent) {
+				return;
+			}
 
-				const { sprite } = spriteComponent;
-				if (sprite) {
-					this._container.removeChild(sprite);
-				}
-			});
+			const { sprite } = spriteComponent;
+			if (sprite) {
+				this._container.removeChild(sprite);
+			}
+		});
 	}
 }
