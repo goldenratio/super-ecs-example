@@ -1,11 +1,11 @@
-import { System } from 'super-ecs';
+import { System, TickerDataLike } from 'super-ecs';
 
 import { SpriteComponent } from '../components/sprite-component';
 import { PositionComponent } from '../components/position-component';
 import { COMPONENT_NAMES } from '../components/types';
 
 export class PositionSystem extends System {
-	update(delta: number): void {
+	update(tickerData: TickerDataLike): void {
 		const entities = this.world.getEntities([COMPONENT_NAMES.PositionComponent, COMPONENT_NAMES.SpriteComponent]);
 		if (entities.length === 0) {
 			return;

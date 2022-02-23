@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "pixi.js": "4.8.2",
-    "super-ecs": "^1.3.0"
+    "rxjs": "^7.5.4",
+    "super-ecs": "^2.3.0"
   }
 }

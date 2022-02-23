@@ -1,16 +1,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
-    "strict": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "target": "es5",
     "esModuleInterop": true,
     "allowJs": false,
-    "declarationDir": "./dist/types",
-    "declaration": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "lib": [
       "esnext",

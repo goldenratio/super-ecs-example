@@ -1,7 +1,8 @@
-import { DisposeBag, System, World } from 'super-ecs';
+import { Entity, System, World } from 'super-ecs';
 
 import { SpriteComponent } from '../components/sprite-component';
 import { COMPONENT_NAMES } from '../components/types';
+import { DisposeBag } from '../utils/dispose-bag';
 
 export class SceneSystem extends System {
 	private readonly _container: PIXI.Container;
@@ -14,9 +15,6 @@ export class SceneSystem extends System {
 
 	removedFromWorld(world: World): void {
 		super.removedFromWorld(world);
-		if (this._disposeBag) {
-			this._disposeBag.dispose();
-		}
 	}
 
 	addedToWorld(world: World): void {
@@ -24,7 +22,7 @@ export class SceneSystem extends System {
 
 		this._disposeBag = new DisposeBag();
 
-		this._disposeBag.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent])).subscribe(entity => {
+		this._disposeBag.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent])).subscribe((entity: Entity) => {
 			const spriteComponent = entity.getComponent<SpriteComponent>(COMPONENT_NAMES.SpriteComponent);
 			if (!spriteComponent) {
 				return;
@@ -36,16 +34,18 @@ export class SceneSystem extends System {
 			}
 		});
 
-		this._disposeBag.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent])).subscribe(entity => {
-			const spriteComponent = entity.getComponent<SpriteComponent>(COMPONENT_NAMES.SpriteComponent);
-			if (!spriteComponent) {
-				return;
-			}
+		this._disposeBag
+			.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
+			.subscribe((entity: Entity) => {
+				const spriteComponent = entity.getComponent<SpriteComponent>(COMPONENT_NAMES.SpriteComponent);
+				if (!spriteComponent) {
+					return;
+				}
 
-			const { sprite } = spriteComponent;
-			if (sprite) {
-				this._container.removeChild(sprite);
-			}
-		});
+				const { sprite } = spriteComponent;
+				if (sprite) {
+					this._container.removeChild(sprite);
+				}
+			});
 	}
 }

@@ -38,7 +38,14 @@ function init(): void {
 	});
 
 	// game loop
-	app.ticker.add(deltaTime => world.update(deltaTime));
+	app.ticker.add(deltaTime =>
+		world.update({
+			deltaTime,
+			// todo: find out below values
+			elapsedMS: 0,
+			lastTime: 0,
+		})
+	);
 }
 
 function createHeroEntity(): Entity {

@@ -1,4 +1,4 @@
-import { System } from 'super-ecs';
+import { System, TickerDataLike } from 'super-ecs';
 
 import { PositionComponent } from '../components/position-component';
 import { COMPONENT_NAMES } from '../components/types';
@@ -14,7 +14,7 @@ export class RandomMovementSystem extends System {
 		this._stageHeight = props.height;
 	}
 
-	update(delta: number): void {
+	update(tickerData: TickerDataLike): void {
 		const entities = this.world.getEntities([
 			COMPONENT_NAMES.PositionComponent,
 			COMPONENT_NAMES.RandomMovementComponent,
@@ -24,6 +24,7 @@ export class RandomMovementSystem extends System {
 			return;
 		}
 
+		const { deltaTime } = tickerData;
 		entities.forEach(entity => {
 			const positionComponent = entity.getComponent<PositionComponent>(COMPONENT_NAMES.PositionComponent);
 			const randomMovementComponent = entity.getComponent<RandomMovementComponent>(
@@ -32,8 +33,8 @@ export class RandomMovementSystem extends System {
 
 			if (positionComponent && randomMovementComponent) {
 				const { speed, direction } = randomMovementComponent;
-				positionComponent.x += speed * direction * delta;
-				positionComponent.y += speed * direction * delta;
+				positionComponent.x += speed * direction * deltaTime;
+				positionComponent.y += speed * direction * deltaTime;
 
 				const stageWidth = this._stageWidth;
 				const stageHeight = this._stageHeight;
