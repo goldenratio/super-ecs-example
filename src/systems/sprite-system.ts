@@ -3,7 +3,7 @@ import { Entity, System, World } from 'super-ecs';
 import { SpriteComponent } from '../components/sprite-component';
 import { DisposeBag } from '../utils/dispose-bag';
 
-export class SceneSystem extends System {
+export class SpriteSystem extends System {
 	private readonly _container: PIXI.Container;
 	private _disposeBag?: DisposeBag;
 

@@ -5,7 +5,7 @@ import { PositionComponent } from './components/position-component';
 import { SpriteComponent } from './components/sprite-component';
 import { RandomMovementComponent } from './components/random-movement-component';
 import { PositionSystem } from './systems/position-system';
-import { SceneSystem } from './systems/scene-system';
+import { SpriteSystem } from './systems/sprite-system';
 import { RandomMovementSystem } from './systems/random-movement-system';
 
 const app = new PIXI.Application({
@@ -29,7 +29,7 @@ function init(): void {
 	const world = new World();
 
 	// systems
-	world.addSystem(new SceneSystem(container)).addSystem(new PositionSystem()).addSystem(new RandomMovementSystem());
+	world.addSystem(new SpriteSystem(container)).addSystem(new PositionSystem()).addSystem(new RandomMovementSystem());
 
 	// entities
 	Array.from({ length: 50 }).forEach(() => {
