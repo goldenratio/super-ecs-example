@@ -1,4 +1,8 @@
 ### super-ecs example
 
 To run the example,
-`npm run start`
+
+```
+npm i
+npm run start
+```
