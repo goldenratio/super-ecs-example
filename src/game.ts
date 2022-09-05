@@ -1,8 +1,8 @@
-import {Application, Container, Loader, Sprite, Texture} from 'pixi.js';
+import { Application, Container, Loader, Sprite, Texture } from 'pixi.js';
 import { World, Entity } from 'super-ecs';
 
-import {PositionComponent, RandomMovementComponent, SpriteComponent} from './components';
-import {PositionSystem, RandomMovementSystem, SpriteSystem} from './systems';
+import { PositionComponent, RandomMovementComponent, SpriteComponent } from './components';
+import { PositionSystem, RandomMovementSystem, SpriteSystem } from './systems';
 
 const app = new Application({
 	width: 600,
