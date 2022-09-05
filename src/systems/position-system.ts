@@ -1,7 +1,6 @@
 import { System, TickerDataLike } from 'super-ecs';
 
-import { SpriteComponent } from '../components/sprite-component';
-import { PositionComponent } from '../components/position-component';
+import { SpriteComponent, PositionComponent } from '../components';
 
 export class PositionSystem extends System {
 	update(tickerData: TickerDataLike): void {

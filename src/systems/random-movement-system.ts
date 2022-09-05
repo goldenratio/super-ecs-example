@@ -1,7 +1,6 @@
 import { System, TickerDataLike } from 'super-ecs';
 
-import { PositionComponent } from '../components/position-component';
-import { RandomMovementComponent } from '../components/random-movement-component';
+import { PositionComponent, RandomMovementComponent } from '../components';
 
 export class RandomMovementSystem extends System {
 	private readonly _stageWidth: number;

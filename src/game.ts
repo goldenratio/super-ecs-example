@@ -1,14 +1,10 @@
-import 'pixi.js';
+import {Application, Container, Loader, Sprite, Texture} from 'pixi.js';
 import { World, Entity } from 'super-ecs';
 
-import { PositionComponent } from './components/position-component';
-import { SpriteComponent } from './components/sprite-component';
-import { RandomMovementComponent } from './components/random-movement-component';
-import { PositionSystem } from './systems/position-system';
-import { SpriteSystem } from './systems/sprite-system';
-import { RandomMovementSystem } from './systems/random-movement-system';
+import {PositionComponent, RandomMovementComponent, SpriteComponent} from './components';
+import {PositionSystem, RandomMovementSystem, SpriteSystem} from './systems';
 
-const app = new PIXI.Application({
+const app = new Application({
 	width: 600,
 	height: 400,
 	backgroundColor: 0x1099bb,
@@ -17,10 +13,10 @@ const app = new PIXI.Application({
 });
 
 document.body.appendChild(app.view);
-const container = new PIXI.Container();
+const container = new Container();
 app.stage.addChild(container);
 
-PIXI.loader
+Loader.shared
 	.add('p1', './assets/p1_front.png')
 	.add('p2', './assets/p2_front.png')
 	.load(() => init());
@@ -60,7 +56,7 @@ function createHeroEntity(): Entity {
 		.addComponent(new RandomMovementComponent({ direction }))
 		.addComponent(
 			new SpriteComponent({
-				sprite: new PIXI.Sprite(PIXI.Texture.fromFrame(textureName)),
+				sprite: new Sprite(Texture.from(textureName)),
 			})
 		);
 

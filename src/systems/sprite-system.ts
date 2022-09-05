@@ -1,13 +1,14 @@
+import { Container } from 'pixi.js';
 import { Entity, System, World } from 'super-ecs';
 
-import { SpriteComponent } from '../components/sprite-component';
+import { SpriteComponent } from '../components';
 import { DisposeBag } from '../utils/dispose-bag';
 
 export class SpriteSystem extends System {
-	private readonly _container: PIXI.Container;
+	private readonly _container: Container;
 	private _disposeBag?: DisposeBag;
 
-	constructor(container: PIXI.Container) {
+	constructor(container: Container) {
 		super();
 		this._container = container;
 	}
