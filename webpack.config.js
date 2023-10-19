@@ -6,12 +6,15 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   target: 'web',
   mode: 'development',
+  devtool: 'source-map',
   entry: {
     main: './src/index.ts'
   },
-  devtool: 'source-map',
   devServer: {
-    contentBase: './bin'
+    static: './bin',
+    client: {
+      overlay: false
+    }
   },
   module: {
     rules: [
@@ -47,9 +50,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'super-ecs sandbox'
     }),
-    new CopyPlugin([
-      { from: './src/assets', to: './assets' }
-    ])
+    new CopyPlugin({
+      patterns: [
+        { from: './src/assets', to: './assets' }
+      ]
+    })
   ],
   output: {
     filename: '[name].bundle.js',
