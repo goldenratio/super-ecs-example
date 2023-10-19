@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/goldenratio/super-ecs-example#readme",
   "devDependencies": {
-    "clean-webpack-plugin": "^3.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^6.2.1",
     "css-loader": "^5.2.6",
     "file-loader": "^6.0.0",
