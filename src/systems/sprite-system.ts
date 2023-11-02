@@ -1,4 +1,4 @@
-import { Container } from 'pixi.js';
+import { Container, DisplayObject } from 'pixi.js';
 import { Entity, System, World } from 'super-ecs';
 
 import { SpriteComponent } from '../components';
@@ -30,7 +30,7 @@ export class SpriteSystem extends System {
 
 			const { sprite } = spriteComponent;
 			if (sprite) {
-				this._container.addChild(sprite);
+				this._container.addChild(<DisplayObject>sprite);
 			}
 		});
 
@@ -42,7 +42,7 @@ export class SpriteSystem extends System {
 
 			const { sprite } = spriteComponent;
 			if (sprite) {
-				this._container.removeChild(sprite);
+				this._container.removeChild(<DisplayObject>sprite);
 			}
 		});
 	}

@@ -1,4 +1,4 @@
-import { Application, Container, Loader, Sprite, Texture } from 'pixi.js';
+import { Application, Container, Assets, Sprite, Texture, DisplayObject, VERSION } from 'pixi.js';
 import { World, Entity } from 'super-ecs';
 
 import { PositionComponent, RandomMovementComponent, SpriteComponent } from './components';
@@ -12,14 +12,20 @@ const app = new Application({
 	sharedTicker: true,
 });
 
+console.log(`pixi version: ${VERSION}`);
+
+// @ts-ignore
 document.body.appendChild(app.view);
 const container = new Container();
-app.stage.addChild(container);
+app.stage.addChild(<DisplayObject>container);
 
-Loader.shared
-	.add('p1', './assets/p1_front.png')
-	.add('p2', './assets/p2_front.png')
-	.load(() => init());
+Assets.addBundle('assets', {
+  'p1': './assets/p1_front.png',
+  'p2': './assets/p2_front.png'
+});
+
+Assets.loadBundle('assets')
+  .then(() => init());
 
 function init(): void {
 	const world = new World();
