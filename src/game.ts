@@ -1,4 +1,4 @@
-import { Application, Container, Assets, Sprite, Texture, DisplayObject, VERSION } from 'pixi.js';
+import { Application, Container, Assets, Sprite, Texture, VERSION } from 'pixi.js';
 import { World, Entity } from 'super-ecs';
 
 import { PositionComponent, RandomMovementComponent, SpriteComponent } from './components';
@@ -17,7 +17,7 @@ console.log(`pixi version: ${VERSION}`);
 // @ts-ignore
 document.body.appendChild(app.view);
 const container = new Container();
-app.stage.addChild(<DisplayObject>container);
+app.stage.addChild(container);
 
 Assets.addBundle('assets', {
   'p1': './assets/p1_front.png',
