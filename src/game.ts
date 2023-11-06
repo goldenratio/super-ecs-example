@@ -1,4 +1,4 @@
-import { Application, Container, Assets, Sprite, Texture, VERSION } from 'pixi.js';
+import { Application, Container, Assets, Sprite, Texture } from 'pixi.js';
 import { World, Entity } from 'super-ecs';
 
 import { PositionComponent, RandomMovementComponent, SpriteComponent } from './components';
@@ -10,9 +10,8 @@ const app = new Application({
 	backgroundColor: 0x1099bb,
 	resolution: window.devicePixelRatio || 1,
 	sharedTicker: true,
+  hello: true
 });
-
-console.log(`pixi version: ${VERSION}`);
 
 // @ts-ignore
 document.body.appendChild(app.view);
