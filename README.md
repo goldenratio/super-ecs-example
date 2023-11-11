@@ -1,8 +1,10 @@
 ### super-ecs example
 
-To run the example,
+super-ecs Typescript example with bundler and compiler,
 
-```
+### How to Run Example
+
+```sh
 npm i
 npm run start
 ```
