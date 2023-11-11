@@ -15,6 +15,10 @@ export class SpriteSystem extends System {
 
 	removedFromWorld(world: World): void {
 		super.removedFromWorld(world);
+    if(this._disposeBag) {
+      this._disposeBag.dispose();
+      this._disposeBag = undefined;
+    }
 	}
 
 	addedToWorld(world: World): void {
