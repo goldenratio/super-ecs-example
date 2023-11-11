@@ -7042,6 +7042,10 @@ class SpriteSystem extends super_ecs__WEBPACK_IMPORTED_MODULE_0__.System {
     }
     removedFromWorld(world) {
         super.removedFromWorld(world);
+        if (this._disposeBag) {
+            this._disposeBag.dispose();
+            this._disposeBag = undefined;
+        }
     }
     addedToWorld(world) {
         super.addedToWorld(world);
