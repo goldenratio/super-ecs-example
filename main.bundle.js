@@ -37977,7 +37977,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   World: () => (/* binding */ World)
 /* harmony export */ });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/dist/esm5/internal/Subject.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/dist/esm5/internal/operators/takeUntil.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/dist/esm5/internal/operators/takeUntil.js");
 // src/entity.ts
 
 var entityId = 0;
@@ -38082,7 +38082,6 @@ var System = class {
 };
 
 // src/world/world.ts
-
 
 
 // src/world/entity-node.ts
@@ -38296,8 +38295,8 @@ var World = class {
     const dispose$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
     this._disposeEntityMap.set(entity, dispose$);
     const { componentAdded$, componentRemoved$ } = entity;
-    componentAdded$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.takeUntil)(dispose$)).subscribe((component) => this.onComponentAdded(entity, component));
-    componentRemoved$.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.takeUntil)(dispose$)).subscribe((component) => this.onComponentRemoved(entity, component));
+    componentAdded$.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.takeUntil)(dispose$)).subscribe((component) => this.onComponentAdded(entity, component));
+    componentRemoved$.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_1__.takeUntil)(dispose$)).subscribe((component) => this.onComponentRemoved(entity, component));
     this._entities.add(entity);
     return this;
   }
